@@ -1,0 +1,148 @@
+
+<div class="container" *ngIf="users">
+<h3>{{ h3Text | translate}} {{fio}}</h3>
+
+  <form [formGroup]="formHtmlUpdate">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group">
+          <label class="control-label" for="first_name">{{"view.first_name" | translate}}</label>
+          <input
+            type="text"
+            id="first_name"
+            class="form-control"
+            formControlName="first_name"
+          />
+          <div *ngIf="formError.first_name" class="alert alert-danger">
+            {{ formError.first_name }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="last_name">{{"view.last_name" | translate}}</label>
+          <input
+            type="text"
+            id="last_name"
+            class="form-control"
+            formControlName="last_name"
+          />
+          <div *ngIf="formError.last_name" class="alert alert-danger">
+            {{ formError.last_name }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="gender">{{"view.gender" | translate}}</label>
+          <select id="gender" class="form-control" formControlName="gender" style="height: 34px">
+            <option
+              *ngFor="let sex of genderUser"
+              [selected]="formHtmlUpdate.controls.gender.value == sex"
+              >{{ sex | translate}}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="dob">{{"view.dob" | translate}}</label>
+          <div class="input-group  date">
+            <span class="input-group-addon kv-date-picker" title="Select date"
+              ><i class="glyphicon glyphicon-calendar kv-dp-icon"></i
+            ></span>
+            <input type="date" id="dob" class="form-control " formControlName="dob"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="phone">{{"view.phone" | translate}}</label>
+          <input
+            type="text"
+            id="phone"
+            class="form-control"
+            formControlName="phone"
+          />
+          <div *ngIf="formError.phone" class="alert alert-danger">
+            {{ formError.phone }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="status">{{"view.status" | translate}}</label>
+          <select
+            id="status"
+            class="form-control"
+            formControlName="status"
+            style="height: 34px"
+          >
+            <option
+              *ngFor="let status of statusUser"
+              [selected]="formHtmlUpdate.controls.status.value == status"
+            >
+              {{ status | translate}}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="form-group ">
+          <label class="control-label" for="email">{{"view.email" | translate}}</label>
+          <input
+            type="email"
+            id="email"
+            class="form-control"
+            formControlName="email"
+          />
+          <div *ngIf="formError.email" class="alert alert-danger">
+            {{ formError.email }}
+          </div>
+          <p class="help-block help-block-error"></p>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="website">{{"view.website" | translate}}</label>
+          <input
+            type="text"
+            id="website"
+            class="form-control"
+            formControlName="website"
+          />
+          <div *ngIf="formError.website" class="alert alert-danger">
+            {{ formError.website }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="avatar">{{"view.avatar" | translate}}</label>
+          <input type="text" id="avatar" class="form-control" />
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="about">{{"view.about" | translate}}</label>
+          <textarea id="about" class="form-control" rows="4">
+Eius nihil aut exercitationem veritatis. Nihil ea eveniet voluptatum voluptatem quisquam aliquid. Officiis aut alias assumenda ducimus dolores accusamus.</textarea
+          >
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="address">{{"view.address" | translate}}</label>
+          <input
+            type="text"
+            id="address"
+            class="form-control"
+            formControlName="address"
+          />
+
+          <div *ngIf="formError.address" class="alert alert-danger">
+            {{ formError.address }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="form-group pull-right">
+          <button
+            class="btn btn-success"
+            [disabled]="formHtmlUpdate.invalid"
+            (click)="addNewUser()"
+          >
+            {{ btnText | translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+

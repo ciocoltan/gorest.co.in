@@ -1,0 +1,66 @@
+<div class="container" *ngIf="currentUser">
+  <h3>
+    {{currentUser.first_name}} {{currentUser.last_name}}
+    <a class="btn btn-danger btn-xs pull-right" (click)="deleteCurrentUser()">{{"btn.delete" | translate}}</a>
+    <a class="btn btn-primary btn-xs pull-right gutter-sm-right" (click)="goToUpdate()">{{"btn.update" | translate}}</a>
+  </h3>
+
+  <table id="w0" class="table table-striped table-bordered detail-view">
+    <tbody>
+      <tr>
+        <th>{{"view.id" |translate}}</th>
+        <td>{{currentUser.id}}</td>
+      </tr>
+      <tr>
+        <th>{{"view.first_name"|translate}}</th>
+        <td> {{currentUser.first_name}}</td>
+      </tr>
+      <tr>
+        <th>{{"view.last_name" | translate}}</th>
+        <td>{{currentUser.last_name}}</td>
+      </tr>
+      <tr>
+        <th>{{"view.gender" | translate}}</th>
+        <td>{{currentUser.gender| translate}}</td>
+      </tr>
+      <tr>
+        <th>{{"view.dob" | translate}}</th>
+        <td>{{currentUser.dob }}</td>
+      </tr>
+      <tr>
+        <th>{{"view.email" | translate}}</th>
+        <td>{{currentUser.email}}</td>
+      </tr>
+      <tr>
+        <th>{{"view.phone" | translate}}</th>
+        <td>{{currentUser.phone}}</td>
+      </tr>
+      <tr>
+        <th>{{"view.website" | translate}}</th>
+        <td><a href="{{currentUser.website}}">{{currentUser.website}}</a>
+        </td>
+      </tr>
+      <tr>
+        <th>{{"view.avatar" | translate}}</th>
+        <td></td>
+      </tr>
+      <tr>
+        <th>{{"view.about" | translate}}</th>
+        <td>Error quidem earum itaque sed. Praesentium corporis laudantium mollitia est. Est voluptas eos omnis aliquid
+          sunt.</td>
+      </tr>
+      <tr>
+        <th>{{"view.address" | translate}}</th>
+        <td>{{currentUser.address}}</td>
+      </tr>
+      <tr>
+        <th>{{"view.status" | translate}}</th>
+        <td>{{currentUser.status | translate}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+  <h3>{{"view.posts" | translate}}</h3>
+  <hr>
+  <h3>{{"view.albums" | translate}}</h3>
+</div>
