@@ -1,69 +1,73 @@
-
-  <div class="public-user-index">
-    <h3> {{"btn.new_user" | translate}}
-      <a class="btn btn-success btn-xs pull-right" routerLink="update" title="{{'btn.new_user' | translate}}">{{"btn.new_user" | translate}}</a>
-    </h3>
-    <div class="summary">
-      {{"users.showing" | translate}} <b>{{ showing }}</b> {{"users.of" | translate}} <b>{{ totalUsers }}</b> {{"users.items" | translate}}.
-    </div>
-    <table class="table table-striped table-bordered table-condensed">
-      <thead>
-        <tr>
-        <th>{{"users.id" | translate}}</th>
-          <th>{{"users.first_name" | translate}}</th>
-        <th>{{"users.last_name" | translate}}</th>
-          <th>{{"users.gender" | translate}}</th>
-          <th>{{"users.email" | translate}}</th>
-          <th>{{"users.phone" | translate}}</th>
-          <th>{{"users.status" | translate}}</th>
-          <th class="action-column">{{"users.action" | translate}}</th>
-        </tr>
-        <tr id="no-more-tables-filters" class="filters">
-          <td><input type="text" class="form-control" autocomplete="off" /></td>
-          <td><input type="text" class="form-control" autocomplete="off" /></td>
-          <td><input type="text" class="form-control" autocomplete="off" /></td>
-          <td>
-            <select class="form-control" style="height: 34px">
-              <option value=""></option>
-              <option value="male">{{"users.male" | translate}}</option>
-              <option value="female">{{"users.female" | translate}}</option>
-            </select>
-          </td>
-          <td><input type="text" class="form-control" autocomplete="off" /></td>
-          <td><input type="text" class="form-control" autocomplete="off" /></td>
-          <td>
-            <select class="form-control" style="height: 34px">
-              <option value=""></option>
-              <option value="active">{{"users.active" | translate}}</option>
-              <option value="inactive">{{"users.inactive" | translate}}</option>
-            </select>
-          </td>
-          <td>&nbsp;</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let user of users">
-          <td>{{ user.id }}</td>
-          <td>{{ user.first_name }}</td>
-          <td>{{ user.last_name }}</td>
-          <td>{{ user.gender | translate}}</td>
-          <td>{{ user.email }}</td>
-          <td>{{ user.phone }}</td>
-          <td>{{ user.status |translate}}</td>
-          <td width="60">
-            <a routerLink="view/{{user.id}}" title="View"><span class="glyphicon glyphicon-eye-open"></span></a>
-            <a routerLink="update/{{user.id}}" title="Update"><span class="glyphicon glyphicon-pencil"></span></a>
-            <a title="Delete"><span class="glyphicon glyphicon-trash" (click)="deleteCurrentUser(user.id)"></span></a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <div class="card-footer pb-0 pt-3" *ngIf="totalUsers">
-      <jw-pagination
-        [items]="items"
-        (changePage)="onChangePage($event)"
-      ></jw-pagination>
-    </div>
+<div class="public-user-index">
+  <h3> {{"btn.new_user" | translate}}
+    <a class="btn btn-success btn-xs pull-right" routerLink="update"
+      title="{{'btn.new_user' | translate}}">{{"btn.new_user" | translate}}</a>
+  </h3>
+  <div class="summary">
+    {{"users.showing" | translate}} <b>{{ showing }}</b> {{"users.of" | translate}} <b>{{ totalUsers }}</b>
+    {{"users.items" | translate}}.
   </div>
+  <table class="table table-striped table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>{{"users.id" | translate}}</th>
+        <th>{{"users.first_name" | translate}}</th>
+        <th>{{"users.last_name" | translate}}</th>
+        <th>{{"users.gender" | translate}}</th>
+        <th>{{"users.email" | translate}}</th>
+        <th>{{"users.phone" | translate}}</th>
+        <th>{{"users.status" | translate}}</th>
+        <th class="action-column">{{"users.action" | translate}}</th>
+      </tr>
 
+      <tr id="no-more-tables-filters" class="filters" [formGroup]="formFilter">
+        <td><input type="text" class="form-control" style="width: 43px;" /></td>
+        <td><input type="text" class="form-control" style="width: 115px;" formControlName="first_name"
+            (change)="pagination()" /></td>
+        <td><input type="text" class="form-control" style="width: 115px;" formControlName="last_name"
+            (change)="pagination()" /></td>
+        <td>
+          <select class="browser-default" style=" width: 80px;" formControlName="gender" (change)="pagination()">
+            <option *ngFor="let sex of genderUser">{{ sex | translate}}
+            </option>
+          </select>
+
+        </td>
+        <td><input type="text" class="form-control" style="width: 200px;" formControlName="email"
+            (change)="pagination()" />
+        </td>
+        <td><input type="text" class="form-control" style="width: 150px;" formControlName="phone"
+            (change)="pagination()" /></td>
+        <td>
+          <select class="browser-default" style="width: 80px;" formControlName="status" (change)="pagination()">
+            <option *ngFor="let status of statusUser">
+              {{status | translate}}
+            </option>
+          </select>
+        </td>
+        <td style="width: 80px;">&nbsp;</td>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>{{ user.gender | translate}}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone }}</td>
+        <td>{{ user.status |translate}}</td>
+        <td width="60">
+          <a routerLink="view/{{user.id}}" title="View"><span class="glyphicon glyphicon-eye-open"></span></a>
+          <a routerLink="update/{{user.id}}" title="Update"><span class="glyphicon glyphicon-pencil"></span></a>
+          <a title="Delete"><span class="glyphicon glyphicon-trash" (click)="deleteCurrentUser(user.id)"></span></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="card-footer pb-0 pt-3" *ngIf="totalUsers">
+    <jw-pagination [items]="items" (changePage)="onChangePage($event)"></jw-pagination>
+  </div>
+</div>

@@ -6,6 +6,7 @@ import { Subscription } from "rxjs";
 import { FormError } from "../shared/obj/formError";
 import { UsersObjResModel } from "../shared/models/UsersObjResModel";
 import { Router, ActivatedRoute } from "@angular/router";
+import { ChangeTranslateService } from '../shared/services/change-translate.service';
 @Component({
   selector: "app-update",
   templateUrl: "./update.component.html",
@@ -19,7 +20,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
   public h3Text: string;
   public btnText: string;
   public id: string;
-  public fio:string;
+  public fio: string;
   public statusUser: Array<string> = ["active", "inactive"];
   public genderUser: Array<string> = ["male", "female"];
   public formError = new FormError();
@@ -48,7 +49,8 @@ export class UpdateComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private _apiServices: ApiServicesService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private _changeTranslate : ChangeTranslateService
   ) {}
 
   ngOnInit() {
@@ -81,14 +83,14 @@ export class UpdateComponent implements OnInit, OnDestroy {
             this.onValueChange();
           })
         );
-          if (this.id) {
-            this.fio = this.users.first_name + this.users.last_name;
-            this.h3Text = "Update User";
-            this.btnText = "Update User";
-          }else{
-            this.h3Text = "Add New User";
-            this.btnText = "Add User";
-          }
+        if (this.id) {
+          this.fio = this.users.first_name + this.users.last_name;
+          this.h3Text = "Update User";
+          this.btnText = "Update User";
+        } else {
+          this.h3Text = "Add New User";
+          this.btnText = "Add User";
+        }
       })
     );
   }
@@ -110,7 +112,6 @@ export class UpdateComponent implements OnInit, OnDestroy {
       this.id = params.id;
       if (this.id) {
         this.formUpdateUser(this.id);
-
       } else {
         this.unSubscribe.add(
           this._apiServices.getUsers().subscribe(res => {
@@ -130,6 +131,7 @@ export class UpdateComponent implements OnInit, OnDestroy {
   }
 
   editForm() {
+    this._changeTranslate.changeTranslate(this.formHtmlUpdate);
     this.unSubscribe.add(
       this._apiServices
         .editForm(this.id, this.formHtmlUpdate.value)
@@ -140,13 +142,13 @@ export class UpdateComponent implements OnInit, OnDestroy {
   }
 
   newUser() {
+    this._changeTranslate.changeTranslate(this.formHtmlUpdate);
     this.unSubscribe.add(
       this._apiServices.sendForm(this.formHtmlUpdate.value).subscribe(res => {
         this.responseControl(res);
       })
     );
   }
-
   responseControl(res: UsersObjResModel) {
     this.controlCode = res;
     if (this.controlCode._meta.code == 200) {
