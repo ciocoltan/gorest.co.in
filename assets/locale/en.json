@@ -1,0 +1,60 @@
+{
+  "Languages": {
+    "EN": "English",
+    "RU": "Russian",
+    "Title": "Language"
+  },
+  "users": {
+    "users": "Users",
+    "showing": "Showing",
+    "of": "of",
+    "items": "items",
+    "id": "ID",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "gender": "Gender",
+    "email": "Email",
+    "phone": "Phone",
+    "status": "Status",
+    "action": "Action",
+    "active": "Active",
+    "inactive": "Inactive",
+    "male": "Male",
+    "female": "Female"
+  },
+  "btn": {
+    "new_user": "New User",
+    "delete": "Delete",
+    "update": "Update",
+    "update_user": "Update User"
+  },
+  "view": {
+    "id": "ID",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "gender": "Gender",
+    "dob": "Dob",
+    "email": "Email",
+    "phone": "Phone",
+    "website": "Website",
+    "avatar": "Avatar",
+    "about": "About",
+    "address": "Address",
+    "status": "Status",
+    "posts": "Posts",
+    "albums": "Albums"
+  },
+
+  "Update User": "Update User",
+  "Add User": "Add User",
+  "Add New User": "Add New User",
+  "female": "Female",
+  "male": "Male",
+  "active": "Active",
+  "inactive": "Inactive",
+  "Home": "Home",
+  "Users": "Users",
+  "Update": "Update",
+  "View": "View",
+  "Id": "Id"
+}
